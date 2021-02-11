@@ -1,0 +1,96 @@
+/* tillana-regular - latin */
+@font-face {
+    font-family: 'Tillana';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/tillana-v6-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/tillana-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/tillana-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/tillana-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/tillana-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/tillana-v6-latin-regular.svg#Tillana') format('svg'); /* Legacy iOS */
+  }
+  /* tillana-500 - latin */
+  @font-face {
+    font-family: 'Tillana';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/tillana-v6-latin-500.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/tillana-v6-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/tillana-v6-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/tillana-v6-latin-500.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/tillana-v6-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/tillana-v6-latin-500.svg#Tillana') format('svg'); /* Legacy iOS */
+  }
+  /* tillana-600 - latin */
+  @font-face {
+    font-family: 'Tillana';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/tillana-v6-latin-600.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/tillana-v6-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/tillana-v6-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/tillana-v6-latin-600.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/tillana-v6-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/tillana-v6-latin-600.svg#Tillana') format('svg'); /* Legacy iOS */
+  }
+  /* tillana-700 - latin */
+  @font-face {
+    font-family: 'Tillana';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/tillana-v6-latin-700.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/tillana-v6-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/tillana-v6-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/tillana-v6-latin-700.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/tillana-v6-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/tillana-v6-latin-700.svg#Tillana') format('svg'); /* Legacy iOS */
+  }
+  /* tillana-800 - latin */
+  @font-face {
+    font-family: 'Tillana';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/tillana-v6-latin-800.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/tillana-v6-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/tillana-v6-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/tillana-v6-latin-800.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/tillana-v6-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/tillana-v6-latin-800.svg#Tillana') format('svg'); /* Legacy iOS */
+  }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    background-color: #F2EEFD;
+    background-image: linear-gradient(#F2EEFD, #C3E3ED);
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Tillana';
+}
+.main__heading{
+    display: flex;
+    justify-content: center;
+    
+}
+.heading{
+    color: #56515F;
+    font-weight: 600;
+    font-size: 35px;    
+}
+.heading-pic1 img, .heading-pic2 img {
+    width: 80px;
+    height: auto;
+    margin-right: 30px;
+}
+.heading-pic2 img{
+    transform: rotate(-6deg);
+}
