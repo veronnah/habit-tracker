@@ -8,8 +8,6 @@
     <title>Habit tracker</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="./libs/slick-1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="./libs/slick-1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -17,26 +15,56 @@
     <div class="container">
         <div class="main__heading">
             <div class="heading-pic1"><img src="./img/vitamins.svg"></div>
-            <div class="heading-pic2"><img src="/img/diet.svg" alt=""></div>
+            <div class="heading-pic2"><img src="/img/diet.svg"></div>
             <h1 class="heading">Habit tracker</h1>
         </div>
+        <div class="cal-container">
+        <div class="calendar">
+            <h3 class="month">Month</h3>
+            <div class="cal__header">
+                <tr class="dayofweek">
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                    <th>Sun</th>
 
+                </tr>
 
-        <div class="slider-container">
-            <div class="slider">
-            <div>your content</div>
-            <div>your content</div>
-            <div>your content</div>
+                <tr class="habit-num">
+                  <label class="check-container">
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check-container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check-container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="check-container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </tr>
+            </div>
+            <tbody class="cal__body">
+
+            </tbody>
+            <button class="btn prev-btn" onclick=previous()>Previous</button>
+            <button class="btn next-btn" onclick=next()>Next</button>
+            
         </div>
-            <button type="button" class="arrow-next"><img src="./img/right-arrow.svg"></button>
-            <button type="button" class="arrow-prev"><img src="./img/left-arrow.svg"></button>
-        </div>
+      </div>
+        
     </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-    <script type="text/javascript" src="./libs/slick-1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
     <script src="./js/main.js"></script>
 </body>
 
