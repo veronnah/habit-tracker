@@ -141,15 +141,21 @@
 }
 
 .calendar{
-    max-width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
     height: 600px;
     background-color: rgba(105, 90, 173, 0.37);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
-.dayofweek{
+.cal__header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+.weekdays{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
 }
 .check-container {
     display: block;
