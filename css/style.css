@@ -142,7 +142,7 @@
 
 .calendar{
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 1111px;
     height: 600px;
     background-color: rgba(105, 90, 173, 0.37);
     display: flex;
@@ -156,6 +156,16 @@
     display: flex;
     justify-content: space-between;
     margin: 15px;
+}
+.monthDisplay{
+    background-color: #e8dfd4;
+    text-align: center;
+    padding: 4px;
+    margin-left: 5em;   
+}
+.checkboxes{
+    display: flex;
+    
 }
 .check-container {
     display: block;

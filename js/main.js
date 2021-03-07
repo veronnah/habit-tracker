@@ -1,49 +1,79 @@
-let today = new Date();
+let nav = 0; 
 
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
 
-let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const weekdays = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+];
 
-let month = document.querySelector('.month'); 
+const checkBoxes = document.querySelector('.checkboxes');
 
-showCalendar(currentMonth, currentYear);
 
-function showCalendar(month, year){
-    let firstDay = new Date(year, month).getDay(); 
-    
-    let daysInMonth = 32 - new Date(year, month, 32).getDate(); 
-    let calendarBody = document.querySelector('.cal__body'); 
 
-    calendarBody.innerHTML = months[month] + "" + year; 
-    
-    let date = 1; 
+function load(){
+    const dt = new Date(); 
 
-    for(let i = 0; i < 6; i++){
-        let row = document.createElement('tr'); 
+    if(nav !== 0){
+        dt.setMonth(new Date().getMonth() + nav);
+    }
+    const day = dt.getDate(); 
+    const month = dt.getMonth(); 
+    const year = dt.getFullYear();
 
-        for(let j = 0; j < 7; j++){
-       
-            if(i === 0 && j < firstDay){
-                let cell = document.createElement('td');
-                let cellText = document.createTextNode(''); 
-                cell.appendChild(cellText); 
-                row.appendChild(cell);
-            }
-            else if(date < daysInMonth){
-                break;
-            }
-            else{
-                let cellText = document.createTextNode(date); 
-                cell.appendChild(cellText); 
-                row.appendChild(cell); 
+    const firstDayOfMonth = new Date(year, month, 1); 
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-            }
-            date++; 
-        }
+    const dateString = firstDayOfMonth.toLocaleDateString('en-us',{
+        weekday: 'long',
+        year: 'numeric', 
+        month: 'numeric',
+        day: 'numeric',
+    });
+    const paddingDays = weekdays.indexOf(dateString.split(', '), [0]); 
 
-        calendarBody.appendChild(row);
+    document.querySelector('.monthDisplay').innerText = 
+    `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`; 
+
+    checkBoxes.innerHTML = ''; 
+
+    console.log(paddingDays);
+    console.log(daysInMonth);
+    for(let i = 0; i <= paddingDays + daysInMonth; i++){
+        const checkBox = document.createElement('div');
+        checkBox.classList.add('checkbox-container'); 
+
+       let cb = checkBoxes.innerHTML += 
+        `<label class="check-container">
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+        </label>`; 
+
+
+        
+
+        const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
+        
+        // if(i > paddingDays){
+        //     checkBox.innerText = i - paddingDays;
+        // }
+
+        
+        checkBoxes.appendChild(checkBox);
+        console.log(checkBox);
 
     }
 }
 
+function navButtons(){
+    document.getElementById('prevBtn').addEventListener('click', ()=> {
+        nav--; 
+        load();
+    });
+    document.getElementById('nextBtn').addEventListener('click', ()=> {
+        nav++; 
+        load();
+    });
+}
+
+
+navButtons(); 
+load(); 
