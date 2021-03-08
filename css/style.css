@@ -153,9 +153,11 @@
     justify-content: space-between;
 }
 .weekdays{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(35, 1fr);
     justify-content: space-between;
-    margin: 15px;
+    margin: 10px 0 10px;
+    text-align: center;
 }
 .monthDisplay{
     background-color: #e8dfd4;
@@ -163,9 +165,16 @@
     padding: 4px;
     margin-left: 5em;   
 }
+.checkboxes__grid{
+    display: grid;
+    grid-template-columns: repeat(31, 1fr);
+    text-align: center;
+}
+.checkboxes-row{
+    margin-bottom: 25px;
+}
 .checkboxes{
     display: flex;
-    
 }
 .check-container {
     display: block;

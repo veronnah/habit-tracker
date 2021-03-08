@@ -3,11 +3,13 @@ let nav = 0;
 
 const weekdays = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
 ];
 
-const checkBoxes = document.querySelector('.checkboxes');
-
-
+const checkBoxes = document.querySelector('.checkboxes__grid');
 
 function load(){
     const dt = new Date(); 
@@ -28,7 +30,8 @@ function load(){
         month: 'numeric',
         day: 'numeric',
     });
-    const paddingDays = weekdays.indexOf(dateString.split(', '), [0]); 
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]); 
+
 
     document.querySelector('.monthDisplay').innerText = 
     `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`; 
@@ -37,30 +40,32 @@ function load(){
 
     console.log(paddingDays);
     console.log(daysInMonth);
-    for(let i = 0; i <= paddingDays + daysInMonth; i++){
-        const checkBox = document.createElement('div');
-        checkBox.classList.add('checkbox-container'); 
 
-       let cb = checkBoxes.innerHTML += 
-        `<label class="check-container">
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>`; 
-
-
-        
-
-        const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
-        
-        // if(i > paddingDays){
-        //     checkBox.innerText = i - paddingDays;
-        // }
-
-        
-        checkBoxes.appendChild(checkBox);
-        console.log(checkBox);
-
-    }
+ 
+        for(let i = 1; i <= paddingDays + daysInMonth; i++){
+       
+            const checkboxRow = document.createElement('div');
+            checkboxRow.classList.add('checkboxes-row'); 
+    
+           let checkBox = checkboxRow.innerHTML += 
+            `<label class="check-container">
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>`; 
+    
+            const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
+            
+            if(i > paddingDays){
+                checkboxRow.innerText = i - paddingDays;
+            }
+            else{
+                checkboxRow.innerText = '*';
+            }
+    
+            
+            checkBoxes.appendChild(checkboxRow);
+        }
+   
 }
 
 function navButtons(){
