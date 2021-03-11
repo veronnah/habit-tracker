@@ -39,12 +39,10 @@ function load(){
 
     checkBoxes.innerHTML = ''; 
 
-    console.log(paddingDays);
-    console.log(daysInMonth);
-
- 
+  
+    function createRows() {
         for(let i = 1; i <= paddingDays + daysInMonth; i++){
-       
+           
             const checkboxRow = document.createElement('div');
             checkboxRow.classList.add('checkboxes-row'); 
     
@@ -62,12 +60,16 @@ function load(){
             else{
                 checkboxRow.innerText = '*';
             }
-    
-            
             checkBoxes.appendChild(checkboxRow);
         }
+    
+    }
+    for(let i = 0; i < 5; i++){
+        createRows();
+    }
    
 }
+
 
 function navButtons(){
     document.getElementById('prevBtn').addEventListener('click', ()=> {
