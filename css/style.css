@@ -143,7 +143,7 @@
     margin: 0 auto;
     /* max-width: 1111px; */
     height: 600px;
-    background-color: rgba(105, 90, 173, 0.37);
+    background-color: rgba(115, 132, 165, 0.37);
     display: flex;
     flex-direction: column;
 }

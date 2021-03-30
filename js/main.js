@@ -15,7 +15,6 @@ let rows = [];
 
 function load(){
     const dt = new Date(); 
-    rows =[];
     daysOfMonth = [];
     if(nav !== 0){
         dt.setMonth(new Date().getMonth() + nav);
@@ -34,48 +33,12 @@ function load(){
         day: 'numeric',
     });
     console.log(dateString);
-    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]); 
-    
 
     document.querySelector('.monthDisplay').innerText = 
     `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`; 
 
     checkBoxes.innerHTML = ''; 
 
-  
-    function createRows(rowId) {
-        for(let i = 1; i <= paddingDays + daysInMonth; i++){
-           
-            const checkboxRow = document.createElement('div');
-            checkboxRow.classList.add('checkboxes-row'); 
-    
-           let checkBox = checkboxRow.innerHTML += 
-            `<label class="check-container">
-                <input type="checkbox" checked="checked">
-                <span class="checkmark"></span>
-            </label>`; 
-    
-            const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
-            console.log();
-           
-            if(i > paddingDays){
-                let ipadding = i - paddingDays;
-                checkboxRow.innerText = i - paddingDays;
-                let dayObj = {
-                    rowId: rowId,
-                    dayNumber: ipadding,
-                    dayName: new Date(dayString).toLocaleString('en-us', {weekday:'short'}),
-                };
-                daysOfMonth.push(dayObj);              
-            }
-            else{
-                checkboxRow.innerText = '*';
-            }
-           
-            checkBoxes.appendChild(checkboxRow);
-        }
-        return daysOfMonth;
-    }
     console.log(daysOfMonth);
     for(let i = 0; i < 5; i++){
          rows.push(createRows(i));
@@ -85,6 +48,39 @@ function load(){
    
 }
 
+function createRows(rowId, daysInMonth) {
+    for(let i = 1; i <= daysInMonth; i++){
+       
+        const checkboxRow = document.createElement('div');
+        checkboxRow.classList.add('checkboxes-row'); 
+
+       let checkBox = checkboxRow.innerHTML += 
+        `<label class="check-container">
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+        </label>`; 
+
+        const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
+        console.log();
+       
+        if(i > paddingDays){
+            let ipadding = i - paddingDays;
+            checkboxRow.innerText = i - paddingDays;
+            let dayObj = {
+                rowId: rowId,
+                dayNumber: ipadding,
+                dayName: new Date(dayString).toLocaleString('en-us', {weekday:'short'}),
+            };
+            daysOfMonth.push(dayObj);              
+        }
+        else{
+            checkboxRow.innerText = '*';
+        }
+       
+        checkBoxes.appendChild(checkboxRow);
+    }
+    return daysOfMonth;
+}
 
 function navButtons(){
   
