@@ -1,101 +1,125 @@
-let nav = 0; 
+let nav = 0;
 
-const weekdays = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+const weekDayNames = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
 ];
 
-const checkBoxes = document.querySelector('.checkboxes__grid');
-let daysOfMonth = [];
-let rows = [];
+const weekdays = document.querySelector('.weekdays');
+const habitCheckboxes = document.querySelector('.habit__checkboxes');
+let habitName = document.querySelector('.habit__name');
 
-function load(){
-    const dt = new Date(); 
+let weekDaysRow = [];
+let habitData = [];
+let daysOfMonth = [];
+
+function load() {
+    const dt = new Date();
+    weekDaysRow = [];
     daysOfMonth = [];
-    if(nav !== 0){
+    habitData = [];
+
+    if (nav !== 0) {
         dt.setMonth(new Date().getMonth() + nav);
     }
-    const day = dt.getDate(); 
-    const month = dt.getMonth(); 
+    const day = dt.getDate();
+    const month = dt.getMonth();
     const year = dt.getFullYear();
 
-    const firstDayOfMonth = new Date(year, month, 1); 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    let date = {
+        day: day,
+        month: month,
+        year: year,
+        firstDayOfMonth: new Date(year, month, 1),
+        daysInMonth: new Date(year, month + 1, 0).getDate(),
+    }
 
-    const dateString = firstDayOfMonth.toLocaleDateString('en-us',{
+    const dateString = date.firstDayOfMonth.toLocaleDateString('en-us', {
         weekday: 'long',
-        year: 'numeric', 
+        year: 'numeric',
         month: 'numeric',
         day: 'numeric',
     });
-    console.log(dateString);
 
-    document.querySelector('.monthDisplay').innerText = 
-    `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`; 
+    const paddingDays = weekDayNames.indexOf(dateString.split(', ')[0]);
 
-    checkBoxes.innerHTML = ''; 
+    document.querySelector('.monthDisplay').innerText =
+        `${dt.toLocaleDateString('en-us', {month: 'long'})} ${date.year}`;
 
-    console.log(daysOfMonth);
-    for(let i = 0; i < 5; i++){
-         rows.push(createRows(i));
-         daysOfMonth = [];
-    }
-    console.log(rows);
-   
+    habitCheckboxes.innerHTML = '';
+    weekdays.innerHTML = '';
+
+    weekDaysRow.push(createWeekdays(paddingDays, date));
+    pushDay();
+
+    createHabits(date);
+
 }
 
-function createRows(rowId, daysInMonth) {
-    for(let i = 1; i <= daysInMonth; i++){
-       
-        const checkboxRow = document.createElement('div');
-        checkboxRow.classList.add('checkboxes-row'); 
+function createWeekdays(paddingDays, date) {
+    for (let i = 1; i <= paddingDays + date.daysInMonth; i++) {
+        const dayString = `${date.month + 1}/${i - paddingDays}/${date.year}`;
 
-       let checkBox = checkboxRow.innerHTML += 
-        `<label class="check-container">
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>`; 
+        if (i > paddingDays) {
 
-        const dayString = `${month + 1}/${i - paddingDays}/${year}`; 
-        console.log();
-       
-        if(i > paddingDays){
-            let ipadding = i - paddingDays;
-            checkboxRow.innerText = i - paddingDays;
             let dayObj = {
-                rowId: rowId,
-                dayNumber: ipadding,
-                dayName: new Date(dayString).toLocaleString('en-us', {weekday:'short'}),
+                dayName: new Date(dayString).toLocaleString('en-us', {
+                    weekday: 'short'
+                }),
             };
-            daysOfMonth.push(dayObj);              
+
+            daysOfMonth.push(dayObj);
         }
-        else{
-            checkboxRow.innerText = '*';
-        }
-       
-        checkBoxes.appendChild(checkboxRow);
     }
     return daysOfMonth;
 }
 
-function navButtons(){
-  
-    document.getElementById('prevBtn').addEventListener('click', ()=> {
-        nav--; 
+function pushDay() {
+    const container = document.getElementById('weekdays');
+    weekDaysRow.forEach((element) => {
+        element.forEach(obj => {
+            container.innerHTML += `<div>${obj.dayName}</div>`;
+        });
+    });
+}
+
+function createHabits(date) {
+
+    let habitField = {
+        value: '',
+        id: '1',
+    };
+
+    for (let i = 1; i <= date.daysInMonth; i++) {
+        let habitCheckBox = {
+            attr: false,
+            id: i,
+        };
+
+        habitCheckboxes.innerHTML += `<input type="checkbox" ${habitCheckBox.attr ? 'checked' : ''}/>`;
+        habitData.push(habitCheckBox);
+    }
+    habitName.innerHTML += `<input type="text" class = "habit__text" value = "dsfsdf">`;
+    habitField.value = document.querySelector('.habit__text').value;
+
+    habitData.push(habitField);
+    console.log(habitField);
+
+}
+
+function navButtons() {
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        nav--;
         load();
     });
-    document.getElementById('nextBtn').addEventListener('click', ()=> {
-        nav++; 
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        nav++;
         load();
-  
+
     });
-    
+
 }
 
 
-navButtons(); 
-load(); 
+navButtons();
+load();

@@ -108,10 +108,7 @@
 }
 
 .container {
-    background-color: #F2EEFD;
-    background-image: linear-gradient(#F2EEFD, #C3E3ED);
-    height: 100vh;
-    width: 100vw;
+    background-image: linear-gradient(#dedce4, #C3E3ED);
     font-family: 'Tillana';
     position: relative;
 }
@@ -120,6 +117,7 @@
     display: flex;
     justify-content: center;
 }
+
 .heading {
     color: #56515F;
     font-weight: 600;
@@ -139,42 +137,35 @@
     transform: rotate(-6deg);
 }
 
-.calendar{
+.calendar__area {
     margin: 0 auto;
-    /* max-width: 1111px; */
     height: 600px;
-    background-color: rgba(115, 132, 165, 0.37);
+    background-color: rgba(17, 32, 63, 0.37);
     display: flex;
     flex-direction: column;
 }
-.cal__header{
+
+.cal__header {
     display: flex;
     justify-content: space-between;
 }
-.weekdays{
-    display: grid;
-    grid-template-columns: repeat(42, 1fr);
-    justify-content: space-between;
+
+.weekdays {
     margin: 10px 0 10px;
+    padding-left: 20em;
+    display: grid;
+    grid-template-columns: repeat(31, 1fr);
     text-align: center;
 }
-.monthDisplay{
+
+.monthDisplay {
     background-color: #e8dfd4;
     text-align: center;
     padding: 4px;
-    margin-left: 5em;   
+    margin-left: 5em;
 }
-.checkboxes__grid{
-    display: grid;
-    grid-template-columns: repeat(42, 1fr);
-    text-align: center;
-}
-.checkboxes-row{
-    margin-bottom: 25px;
-}
-.checkboxes{
-    display: flex;
-}
+
+
 .check-container {
     display: block;
     position: relative;
@@ -186,44 +177,49 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  .check-container input {
+}
+
+.check-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+/* Create a custom checkbox */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
     height: 25px;
     width: 25px;
     background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .check-container:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .check-container input:checked ~ .checkmark {
-    background-color: #2196F3;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .check-container input:checked ~ .checkmark:after {
-    display: block;
-  }
+}
+
+.habit {
+    display: flex;
+    align-items: center;
+}
+
+.habit__checkboxes {
+    display: grid;
+    grid-template-columns: repeat(31, 1fr);
+    width: 100%;
+}
+
+.habit__checkboxes input {
+    cursor: pointer;
+    width: 50px;
+    height: 20px;
+}
+
+.habit__name {
+    max-width: 323px;
+    width: 100%;
+}
+
+.habit__name input {
+    width: 100%;
+}
+
