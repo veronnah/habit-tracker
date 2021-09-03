@@ -223,3 +223,6 @@
     width: 100%;
 }
 
+input.habit__text{
+    cursor: pointer;
+}

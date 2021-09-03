@@ -47,6 +47,7 @@ function load() {
 
     habitCheckboxes.innerHTML = '';
     weekdays.innerHTML = '';
+    habitName.innerHTML = '';
 
     weekDaysRow.push(createWeekdays(paddingDays, date));
     pushDay();
@@ -82,6 +83,7 @@ function pushDay() {
     });
 }
 
+
 function createHabits(date) {
 
     let habitField = {
@@ -95,15 +97,32 @@ function createHabits(date) {
             id: i,
         };
 
-        habitCheckboxes.innerHTML += `<input type="checkbox" ${habitCheckBox.attr ? 'checked' : ''}/>`;
+        habitCheckboxes.innerHTML += `<input type="checkbox" class="checkbox" id='${i}'${habitCheckBox.attr ? 'checked' : ''}/>`;
+        document.querySelectorAll(".checkbox").forEach(el => {
+            el.onchange = () => localStorage.setItem(el.id, el.checked);
+            el.checked = localStorage.getItem(el.id) === "true";
+        })
         habitData.push(habitCheckBox);
     }
-    habitName.innerHTML += `<input type="text" class = "habit__text" value = "dsfsdf">`;
-    habitField.value = document.querySelector('.habit__text').value;
+
+    let habitInput = '<input type="text" class="habit__text" id="input1">';
+
+    habitName.innerHTML += habitInput;
+
+    let inputElement = document.getElementById('input1');
+    inputElement.addEventListener('change', () => {
+        habitField.value = inputElement.value;
+        saveInputValue(habitField);
+    });
 
     habitData.push(habitField);
-    console.log(habitField);
+    inputElement.value = JSON.parse(localStorage.getItem('habitName'));
 
+}
+
+function saveInputValue(habitField) {
+    localStorage.setItem("habitName", JSON.stringify(habitField.value));
+    console.log(window.localStorage.getItem('habitName'));
 }
 
 function navButtons() {
