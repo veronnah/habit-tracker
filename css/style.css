@@ -226,3 +226,14 @@
 input.habit__text{
     cursor: pointer;
 }
+
+.add__habit-btn{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 900;
+    border: none;
+    background-color: thistle;
+    margin-top: 20px;
+    margin-left: 20px;
+}

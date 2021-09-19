@@ -27,7 +27,7 @@ function load() {
 
     let date = {
         day: day,
-        month: month,
+        month: month + 1,
         year: year,
         firstDayOfMonth: new Date(year, month, 1),
         daysInMonth: new Date(year, month + 1, 0).getDate(),
@@ -52,7 +52,29 @@ function load() {
     weekDaysRow.push(createWeekdays(paddingDays, date));
     pushDay();
 
-    createHabits(date);
+    habitData = JSON.parse(localStorage.getItem('habitData'));
+    if (habitData != null && habitData != undefined) {
+
+        let currentMonth = habitData.find(data => data.month == date.month && data.year == date.year);
+        if (currentMonth != null && currentMonth != undefined) {
+            // console.log(habitData);
+
+            currentMonth.habitRows.forEach(el => {
+                // console.log(el);
+                let habitInput = `<input type="text" class="habit__text" id='${el.id}'>`;
+                habitName.innerHTML += habitInput;
+
+                el.checkBoxesRow.forEach(checkbox => {
+                    habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
+                });
+            });
+        }
+    } else {
+        createHabits(date);
+    }
+
+    saveInputValue(date);
+    setCheckboxValue(date);
 
 }
 
@@ -85,44 +107,64 @@ function pushDay() {
 
 
 function createHabits(date) {
-
-    let habitField = {
-        value: '',
-        id: '1',
+    let monthHabits = {
+        year: date.year,
+        month: date.month,
+        habitRows: [],
     };
 
+    let habitRow = {
+        id: 1,
+        value: '',
+        checkBoxesRow: [],
+    };
+
+    monthHabits.habitRows.push(habitRow);
     for (let i = 1; i <= date.daysInMonth; i++) {
         let habitCheckBox = {
-            attr: false,
+            isChecked: false,
             id: i,
         };
 
-        habitCheckboxes.innerHTML += `<input type="checkbox" class="checkbox" id='${i}'${habitCheckBox.attr ? 'checked' : ''}/>`;
-        document.querySelectorAll(".checkbox").forEach(el => {
-            el.onchange = () => localStorage.setItem(el.id, el.checked);
-            el.checked = localStorage.getItem(el.id) === "true";
-        })
-        habitData.push(habitCheckBox);
+        habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${habitRow.id}' class="checkbox"  id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
+
+        habitRow.checkBoxesRow.push(habitCheckBox);
     }
-
-    let habitInput = '<input type="text" class="habit__text" id="input1">';
-
+    let habitInput = `<input type="text" class="habit__text" id='1'>`;
     habitName.innerHTML += habitInput;
 
-    let inputElement = document.getElementById('input1');
-    inputElement.addEventListener('change', () => {
-        habitField.value = inputElement.value;
-        saveInputValue(habitField);
-    });
-
-    habitData.push(habitField);
-    inputElement.value = JSON.parse(localStorage.getItem('habitName'));
-
+    habitData = [];
+    habitData.push(monthHabits);
+    localStorage.setItem('habitData', JSON.stringify(habitData));
 }
 
-function saveInputValue(habitField) {
-    localStorage.setItem("habitName", JSON.stringify(habitField.value));
-    console.log(window.localStorage.getItem('habitName'));
+function setCheckboxValue(date) {
+    document.querySelectorAll(".checkbox").forEach(el => {
+        el.onchange = () => {
+            let parentRowId = el.dataset.parentRowId;
+            let currentMonth = habitData.find(month => month.year == date.year && month.month == date.month);
+
+            let currentRow = currentMonth.habitRows.find(habitRow => habitRow.id == parentRowId);
+            let currentCheckbox = currentRow.checkBoxesRow.find(checkbox => checkbox.id == el.id);
+            currentCheckbox.isChecked = el.checked;
+
+            localStorage.setItem('habitData', JSON.stringify(habitData));
+        };
+
+    });
+}
+
+function saveInputValue(date) {
+    let inputElement = document.querySelector('.habit__text');
+
+    inputElement.addEventListener('input', () => {
+        let currentMonth = habitData.find(month => month.year == date.year && month.month == date.month);
+        let currentRow = currentMonth.habitRows.find(habitRow => habitRow.value == habitRow.value);
+        console.log(currentRow);
+        currentRow.value = inputElement.value;
+        localStorage.setItem('habitData', JSON.stringify(habitData));
+    });
+
 }
 
 function navButtons() {
