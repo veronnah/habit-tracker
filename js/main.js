@@ -7,6 +7,7 @@ const weekDayNames = [
 const weekdays = document.querySelector('.weekdays');
 const habitCheckboxes = document.querySelector('.habit__checkboxes');
 let habitName = document.querySelector('.habit__name');
+let habit = document.querySelectorAll('.habit');
 
 let weekDaysRow = [];
 let habitData = [];
@@ -57,11 +58,9 @@ function load() {
 
         let currentMonth = habitData.find(data => data.month == date.month && data.year == date.year);
         if (currentMonth != null && currentMonth != undefined) {
-            // console.log(habitData);
 
             currentMonth.habitRows.forEach(el => {
-                // console.log(el);
-                let habitInput = `<input type="text" class="habit__text" id='${el.id}'>`;
+                let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
                 habitName.innerHTML += habitInput;
 
                 el.checkBoxesRow.forEach(checkbox => {
@@ -113,25 +112,40 @@ function createHabits(date) {
         habitRows: [],
     };
 
-    let habitRow = {
-        id: 1,
-        value: '',
-        checkBoxesRow: [],
-    };
-
-    monthHabits.habitRows.push(habitRow);
-    for (let i = 1; i <= date.daysInMonth; i++) {
-        let habitCheckBox = {
-            isChecked: false,
+    for (let i = 1; i < 4; i++) {
+        let habitRow = {
             id: i,
+            value: '',
+            checkBoxesRow: [],
         };
+        monthHabits.habitRows.push(habitRow);
+        let habits = document.querySelector('.habits');
 
-        habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${habitRow.id}' class="checkbox"  id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
+        let habit = document.createElement('div');
+        habit.className = 'habit';
+        let habitName = document.createElement('div');
+        habitName.className = 'habit__name';
+        let habitCheckboxes = document.createElement('div');
+        habitCheckboxes.className = 'habit__checkboxes';
+        habit.appendChild(habitName);
+        habit.appendChild(habitCheckboxes);
+        habits.appendChild(habit);
 
-        habitRow.checkBoxesRow.push(habitCheckBox);
+        let habitInput = `<input type="text" class="habit__text"  id='${i}'>`;
+        habitName.innerHTML += habitInput;
+        for (let i = 1; i <= date.daysInMonth; i++) {
+            let habitCheckBox = {
+                isChecked: false,
+                id: i,
+            };
+
+            habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${habitRow.id}' class="checkbox"  id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
+
+            habitRow.checkBoxesRow.push(habitCheckBox);
+            setCheckboxValue(date);
+        }
+        saveInputValue(date);
     }
-    let habitInput = `<input type="text" class="habit__text" id='1'>`;
-    habitName.innerHTML += habitInput;
 
     habitData = [];
     habitData.push(monthHabits);
@@ -143,7 +157,6 @@ function setCheckboxValue(date) {
         el.onchange = () => {
             let parentRowId = el.dataset.parentRowId;
             let currentMonth = habitData.find(month => month.year == date.year && month.month == date.month);
-
             let currentRow = currentMonth.habitRows.find(habitRow => habitRow.id == parentRowId);
             let currentCheckbox = currentRow.checkBoxesRow.find(checkbox => checkbox.id == el.id);
             currentCheckbox.isChecked = el.checked;
@@ -155,14 +168,14 @@ function setCheckboxValue(date) {
 }
 
 function saveInputValue(date) {
-    let inputElement = document.querySelector('.habit__text');
 
-    inputElement.addEventListener('input', () => {
-        let currentMonth = habitData.find(month => month.year == date.year && month.month == date.month);
-        let currentRow = currentMonth.habitRows.find(habitRow => habitRow.value == habitRow.value);
-        console.log(currentRow);
-        currentRow.value = inputElement.value;
-        localStorage.setItem('habitData', JSON.stringify(habitData));
+    document.querySelectorAll('.habit__text').forEach(el => {
+        el.addEventListener('input', () => {
+            let currentMonth = habitData.find(month => month.year == date.year && month.month == date.month);
+            let currentRow = currentMonth.habitRows.find(habitRow => habitRow.id == el.id);
+            currentRow.value = el.value;
+            localStorage.setItem('habitData', JSON.stringify(habitData));
+        });
     });
 
 }
