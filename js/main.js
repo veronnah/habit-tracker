@@ -124,7 +124,6 @@ function pushDay() {
 }
 
 function createHabits(date) {
-    debugger
     let monthHabits = {
         year: date.year,
         month: date.month,
