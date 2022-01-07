@@ -152,7 +152,7 @@
 
 .weekdays {
     margin: 10px 0 10px;
-    padding-left: 20em;
+    padding-left: 22.5em;
     display: grid;
     grid-template-columns: repeat(31, 1fr);
     text-align: center;
@@ -164,7 +164,6 @@
     padding: 4px;
     margin-left: 5em;
 }
-
 
 .check-container {
     display: block;
@@ -187,7 +186,6 @@
     width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
     position: absolute;
     top: 0;
@@ -210,7 +208,8 @@
 
 .habit__checkboxes input {
     cursor: pointer;
-    width: 50px;
+    max-width: 50px;
+    width: 100%;
     height: 20px;
 }
 
@@ -233,7 +232,15 @@ input.habit__text{
     font-size: 20px;
     font-weight: 900;
     border: none;
-    background-color: thistle;
+    background-color: rgb(152, 223, 164);
     margin-top: 20px;
     margin-left: 20px;
+}
+.habit__delete button{
+    background-color: lightcoral;
+    outline: none;
+    border: none;
+    width: 30px;
+    margin-right: 6px;
+    height: 100%;
 }

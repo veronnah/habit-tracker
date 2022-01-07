@@ -9,6 +9,7 @@ const habitCheckboxes = document.querySelector('.habit__checkboxes');
 let habitName = document.querySelector('.habit__name');
 let habits = document.querySelector('.habits');
 let habit = document.querySelectorAll('.habit');
+let deleteRowBtn = document.querySelector('.habit__delete');
 
 let weekDaysRow = [];
 let habitData = [];
@@ -18,7 +19,7 @@ function load() {
     const dt = new Date();
     weekDaysRow = [];
     daysOfMonth = [];
-    habitData = [];
+    // habitData = [];
 
     if (nav !== 0) {
         dt.setMonth(new Date().getMonth() + nav);
@@ -52,39 +53,43 @@ function load() {
     habits.innerHTML = '';
     habit.innerHTML = '';
 
-
     weekDaysRow.push(createWeekdays(paddingDays, date));
     pushDay();
 
     habitData = JSON.parse(localStorage.getItem('habitData'));
 
+    if (habitData != null && habitData.find(data => data.month == date.month && data.year == date.year)) {
 
-    let currentMonth = habitData.find(data => data.month == date.month && data.year == date.year);
-    console.log(currentMonth);
-    if (currentMonth != null) {
+        let currentMonth = habitData.find(data => data.month == date.month && data.year == date.year);
+        console.log(currentMonth.month);
+        if (currentMonth != null && currentMonth != undefined) {
 
-        currentMonth.habitRows.forEach(el => {
+            currentMonth.habitRows.forEach(el => {
 
-            let habit = document.createElement('div');
-            habit.className = 'habit';
-            let habitName = document.createElement('div');
-            habitName.className = 'habit__name';
-            let habitCheckboxes = document.createElement('div');
-            habitCheckboxes.className = 'habit__checkboxes';
-            habit.appendChild(habitName);
-            habit.appendChild(habitCheckboxes);
-            habits.appendChild(habit);
+                let habits = document.querySelector('.habits');
+                let habit = document.createElement('div');
+                habit.className = 'habit';
+                let habitName = document.createElement('div');
+                habitName.className = 'habit__name';
+                let habitCheckboxes = document.createElement('div');
+                habitCheckboxes.className = 'habit__checkboxes';
+                let habitDeleteBtn = document.createElement('div');
+                habitDeleteBtn.className = 'habit__delete';
+                habitDeleteBtn.innerHTML = `<button>-</button>`;
+                habit.appendChild(habitDeleteBtn);
+                habit.appendChild(habitName);
+                habit.appendChild(habitCheckboxes);
+                habits.appendChild(habit);
 
-            let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
-            habitName.innerHTML += habitInput;
+                let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
+                habitName.innerHTML += habitInput;
 
-            el.checkBoxesRow.forEach(checkbox => {
-                habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
+                el.checkBoxesRow.forEach(checkbox => {
+                    habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
+                });
             });
-        });
-
+        }
     } else {
-        habitData = JSON.parse(localStorage.getItem('habitData'));
         createHabits(date);
     }
 
@@ -103,7 +108,6 @@ function createWeekdays(paddingDays, date) {
                     weekday: 'short'
                 }),
             };
-
             daysOfMonth.push(dayObj);
         }
     }
@@ -119,18 +123,6 @@ function pushDay() {
     });
 }
 
-// function createElements() {
-//     let habit = document.createElement('div');
-//     habit.className = 'habit';
-//     let habitName = document.createElement('div');
-//     habitName.className = 'habit__name';
-//     let habitCheckboxes = document.createElement('div');
-//     habitCheckboxes.className = 'habit__checkboxes';
-//     habit.appendChild(habitName);
-//     habit.appendChild(habitCheckboxes);
-//     habits.appendChild(habit);
-// }
-
 function createHabits(date) {
     let monthHabits = {
         year: date.year,
@@ -145,33 +137,74 @@ function createHabits(date) {
             checkBoxesRow: [],
         };
         monthHabits.habitRows.push(habitRow);
+        habitData = JSON.parse(localStorage.getItem('habitData'));
 
-        let habit = document.createElement('div');
-        habit.className = 'habit';
-        let habitName = document.createElement('div');
-        habitName.className = 'habit__name';
-        let habitCheckboxes = document.createElement('div');
-        habitCheckboxes.className = 'habit__checkboxes';
-        habit.appendChild(habitName);
-        habit.appendChild(habitCheckboxes);
-        habits.appendChild(habit);
+        if (habitData != null && habitData.find(data => data.month == date.month && data.year == date.year)) {
 
-        let habitInput = `<input type="text" class="habit__text"  id='${i}'>`;
-        habitName.innerHTML += habitInput;
-        for (let i = 1; i <= date.daysInMonth; i++) {
-            let habitCheckBox = {
-                isChecked: false,
-                id: i,
-            };
+            let currentMonth = habitData.find(data => data.month == date.month && data.year == date.year);
+            console.log(currentMonth.month);
+            if (currentMonth != null && currentMonth != undefined) {
 
-            habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${habitRow.id}' class="checkbox"  id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
+                currentMonth.habitRows.forEach(el => {
 
-            habitRow.checkBoxesRow.push(habitCheckBox);
-            setCheckboxValue(date);
+                    let habits = document.querySelector('.habits');
+                    let habit = document.createElement('div');
+                    habit.className = 'habit';
+                    let habitName = document.createElement('div');
+                    habitName.className = 'habit__name';
+                    let habitCheckboxes = document.createElement('div');
+                    habitCheckboxes.className = 'habit__checkboxes';
+                    let habitDeleteBtn = document.createElement('div');
+                    habitDeleteBtn.className = 'habit__delete';
+                    habitDeleteBtn.innerHTML = `<button>-</button>`;
+                    habit.appendChild(habitDeleteBtn);
+                    habit.appendChild(habitName);
+                    habit.appendChild(habitCheckboxes);
+                    habits.appendChild(habit);
+
+                    let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
+                    habitName.innerHTML += habitInput;
+
+                    el.checkBoxesRow.forEach(checkbox => {
+                        habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
+                    });
+                });
+            }
+        } else {
+            let habits = document.querySelector('.habits');
+            let habit = document.createElement('div');
+            habit.className = 'habit';
+            let habitName = document.createElement('div');
+            habitName.className = 'habit__name';
+            let habitCheckboxes = document.createElement('div');
+            habitCheckboxes.className = 'habit__checkboxes';
+            let habitDeleteBtn = document.createElement('div');
+            habitDeleteBtn.className = 'habit__delete';
+            habitDeleteBtn.innerHTML = `<button>-</button>`;
+            habit.appendChild(habitDeleteBtn);
+            habit.appendChild(habitName);
+            habit.appendChild(habitCheckboxes);
+            habits.appendChild(habit);
+
+            let habitInput = `<input type="text" class="habit__text"  id='${i}'>`;
+            habitName.innerHTML += habitInput;
+            for (let i = 1; i <= date.daysInMonth; i++) {
+                let habitCheckBox = {
+                    isChecked: false,
+                    id: i,
+                };
+
+                habitCheckboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${habitRow.id}' class="checkbox"  id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
+
+                habitRow.checkBoxesRow.push(habitCheckBox);
+                setCheckboxValue(date);
+            }
         }
+
         saveInputValue(date);
     }
 
+    // habitData = [];
     habitData.push(monthHabits);
     localStorage.setItem('habitData', JSON.stringify(habitData));
 }
