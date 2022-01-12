@@ -9,7 +9,6 @@ const habitCheckboxes = document.querySelector('.habit__checkboxes');
 let habitName = document.querySelector('.habit__name');
 let habits = document.querySelector('.habits');
 let habit = document.querySelectorAll('.habit');
-let deleteRowBtn = document.querySelector('.habit__delete');
 
 let weekDaysRow = [];
 let habitData = [];
@@ -81,7 +80,7 @@ function load() {
                 habit.appendChild(habitCheckboxes);
                 habits.appendChild(habit);
 
-                let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
+                let habitInput = `<input type="text" class="habit__text" id='${el.id}' data-year='${date.year}' data-month='${date.month}' value='${el.value}'>`;
                 habitName.innerHTML += habitInput;
 
                 el.checkBoxesRow.forEach(checkbox => {
@@ -95,6 +94,7 @@ function load() {
 
     saveInputValue(date);
     setCheckboxValue(date);
+    addEventDelete();
 }
 
 function createWeekdays(paddingDays, date) {
@@ -239,8 +239,39 @@ function saveInputValue(date) {
 
 }
 
-function navButtons() {
+function addNewHabit() {
 
+}
+
+function deleteHabitRow(event) {
+    let clickedElement = event.target.parentNode.parentNode;
+    let currentRowInput = event.target.parentNode.nextElementSibling.firstChild;
+    let currentYear = +currentRowInput.dataset.year;
+    let currentMonth = +currentRowInput.dataset.month;
+    let currentId = +currentRowInput.id;
+    let filteredHabitData = habitData.find(e => e.year === currentYear && e.month === currentMonth).habitRows.filter(e => e.id !== currentId);
+
+    habitData.map(rows => {
+        if (rows.year === currentYear && rows.month === currentMonth) {
+            rows.habitRows = filteredHabitData;
+        }
+    });
+
+    clickedElement.remove();
+    localStorage.removeItem('habitData');
+    localStorage.setItem('habitData', JSON.stringify(habitData));
+}
+
+function addEventDelete() {
+    let deleteRowBtns = document.querySelectorAll('.habit__delete');
+    for (let btn of deleteRowBtns) {
+        btn.addEventListener('click', event => {
+            deleteHabitRow(event);
+        });
+    }
+}
+
+function navButtons() {
     document.getElementById('prevBtn').addEventListener('click', () => {
         nav--;
         load();
@@ -250,7 +281,6 @@ function navButtons() {
         nav++;
         load();
     });
-
 }
 
 navButtons();

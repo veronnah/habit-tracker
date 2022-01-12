@@ -222,11 +222,11 @@
     width: 100%;
 }
 
-input.habit__text{
+input.habit__text {
     cursor: pointer;
 }
 
-.add__habit-btn{
+.add__habit-btn {
     width: 30px;
     height: 30px;
     font-size: 20px;
@@ -235,8 +235,11 @@ input.habit__text{
     background-color: rgb(152, 223, 164);
     margin-top: 20px;
     margin-left: 20px;
+    border-radius: 50%;
+    box-shadow: 1px 3px 6px #0000003d;
 }
-.habit__delete button{
+
+.habit__delete button {
     background-color: lightcoral;
     outline: none;
     border: none;
