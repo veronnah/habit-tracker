@@ -139,7 +139,7 @@
 
 .calendar__area {
     margin: 0 auto;
-    height: 600px;
+    height: calc(100% - 50px);
     background-color: rgba(17, 32, 63, 0.37);
     display: flex;
     flex-direction: column;
