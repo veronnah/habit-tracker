@@ -200,8 +200,8 @@ function setCheckboxValue(date) {
         el.onchange = () => {
             let parentRowId = el.dataset.parentRowId;
             let currentMonth = habitData.find(month => month.year === date.year && month.month === date.month);
-            let currentRow = currentMonth.habitRows.find(habitRow => habitRow?.id === parentRowId);
-            let currentCheckbox = currentRow.checkBoxesRow.find(checkbox => checkbox.id === el.id);
+            let currentRow = currentMonth.habitRows.find(habitRow => habitRow.id === +parentRowId);
+            let currentCheckbox = currentRow.checkBoxesRow.find(checkbox => checkbox.id === +el.id);
             currentCheckbox.isChecked = el.checked;
             localStorage.setItem('habitData', JSON.stringify(habitData));
         };
@@ -291,7 +291,7 @@ function deleteHabitRow(event) {
     let currentYear = +currentRowInput.dataset.year;
     let currentMonth = +currentRowInput.dataset.month;
     let currentId = +currentRowInput.id;
-    let filteredHabitData = habitData.find(e => e.year === currentYear && e.month === currentMonth).habitRows.filter(e => e?.id !== currentId);
+    let filteredHabitData = habitData.find(e => e.year === currentYear && e.month === currentMonth).habitRows.filter(e => e.id !== currentId);
 
     habitData.map(rows => {
         if (rows.year === currentYear && rows.month === currentMonth) {
