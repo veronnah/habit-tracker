@@ -15,13 +15,63 @@ let habitData = [];
 let daysOfMonth = [];
 
 function load() {
+   let dateObj = initDate(true);
+
+    const dateString = dateObj.date.firstDayOfMonth.toLocaleDateString('en-us', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+    });
+
+    const paddingDays = weekDayNames.indexOf(dateString.split(', ')[0]);
+
+    document.querySelector('.monthDisplay').innerText =
+        `${dateObj.dt.toLocaleDateString('en-us', {month: 'long'})} ${dateObj.date.year}`;
+
+    habitCheckboxes.innerHTML = '';
+    weekdays.innerHTML = '';
+    habitName.innerHTML = '';
+    habits.innerHTML = '';
+    habit.innerHTML = '';
+
+    weekDaysRow.push(createWeekdays(paddingDays, dateObj.date));
+    pushDay();
+
+    habitData = JSON.parse(localStorage.getItem('habitData'));
+
+    if (habitData != null && habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year)) {
+        let currentMonth = habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year);
+        if (currentMonth != null) {
+            currentMonth.habitRows.forEach(el => {
+                let habitsLayout = createHabitsLayout();
+
+                let habitInput = `<input type="text" class="habit__text" id='${el?.id}' data-year='${dateObj.date.year}' data-month='${dateObj.date.month}' value='${el.value}'>`;
+                habitsLayout.name.innerHTML += habitInput;
+
+                el.checkBoxesRow.forEach(checkbox => {
+                    habitsLayout.checkboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
+                });
+            });
+        }
+    } else {
+        createHabits(dateObj.date);
+    }
+
+    saveInputValue(dateObj.date);
+    setCheckboxValue(dateObj.date);
+    addEventDelete();
+}
+
+function initDate(isNav = false) {
     const dt = new Date();
     weekDaysRow = [];
     daysOfMonth = [];
 
-    if (nav !== 0) {
+    if (isNav && nav !== 0) {
         dt.setMonth(new Date().getMonth() + nav);
     }
+
     const day = dt.getDate();
     const month = dt.getMonth();
     const year = dt.getFullYear();
@@ -33,53 +83,14 @@ function load() {
         firstDayOfMonth: new Date(year, month, 1),
         daysInMonth: new Date(year, month + 1, 0).getDate(),
     }
-    const dateString = date.firstDayOfMonth.toLocaleDateString('en-us', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-    });
 
-    const paddingDays = weekDayNames.indexOf(dateString.split(', ')[0]);
-
-    document.querySelector('.monthDisplay').innerText =
-        `${dt.toLocaleDateString('en-us', {month: 'long'})} ${date.year}`;
-
-    habitCheckboxes.innerHTML = '';
-    weekdays.innerHTML = '';
-    habitName.innerHTML = '';
-    habits.innerHTML = '';
-    habit.innerHTML = '';
-
-    weekDaysRow.push(createWeekdays(paddingDays, date));
-    pushDay();
-
-    habitData = JSON.parse(localStorage.getItem('habitData'));
-
-    if (habitData != null && habitData.find(data => data.month === date.month && data.year === date.year)) {
-
-        let currentMonth = habitData.find(data => data.month === date.month && data.year === date.year);
-
-        if (currentMonth != null) {
-
-            currentMonth.habitRows.forEach(el => {
-                let habitsLayout = createHabitsLayout();
-
-                let habitInput = `<input type="text" class="habit__text" id='${el?.id}' data-year='${date.year}' data-month='${date.month}' value='${el.value}'>`;
-                habitsLayout.name.innerHTML += habitInput;
-
-                el.checkBoxesRow.forEach(checkbox => {
-                    habitsLayout.checkboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${el.id}' class="checkbox"  id='${checkbox.id}' ${checkbox.isChecked ? 'checked' : ''}/>`;
-                });
-            });
-        }
-    } else {
-        createHabits(date);
+    return {
+        dt: dt,
+        date: date,
+        day: day,
+        month: month,
+        year: year,
     }
-
-    saveInputValue(date);
-    setCheckboxValue(date);
-    addEventDelete();
 }
 
 function createHabitsLayout() {
@@ -146,13 +157,9 @@ function createHabits(date) {
         habitData = JSON.parse(localStorage.getItem('habitData'));
 
         if (habitData != null && habitData.find(data => data.month === date.month && data.year === date.year)) {
-
             let currentMonth = habitData.find(data => data.month === date.month && data.year === date.year);
-
             if (currentMonth != null) {
-
                 currentMonth.habitRows.forEach(el => {
-
                     let habitsLayout = createHabitsLayout();
 
                     let habitInput = `<input type="text" class="habit__text" id='${el.id}' value='${el.value}'>`;
@@ -222,31 +229,11 @@ function saveInputValue(date) {
 }
 
 function addNewHabit() {
-    const dt = new Date();
-    weekDaysRow = [];
-    daysOfMonth = [];
-    // habitData = [];
-
-    if (nav !== 0) {
-        dt.setMonth(new Date().getMonth() + nav);
-    }
-    const day = dt.getDate();
-    const month = dt.getMonth();
-    const year = dt.getFullYear();
-
-    let date = {
-        day: day,
-        month: month + 1,
-        year: year,
-        firstDayOfMonth: new Date(year, month, 1),
-        daysInMonth: new Date(year, month + 1, 0).getDate(),
-    }
-
+    let dateObj = initDate(true);
     habitData = JSON.parse(localStorage.getItem('habitData'));
 
-    if (habitData != null && habitData.find(data => data.month === date.month && data.year === date.year)) {
-
-        let currentMonth = habitData.find(data => data.month === date.month && data.year === date.year);
+    if (habitData != null && habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year)) {
+        let currentMonth = habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year);
         let habitRowsFiltered = currentMonth.habitRows.filter(el => {
             return el !== null && el !== '';
         });
@@ -263,10 +250,10 @@ function addNewHabit() {
 
         let habitsLayout = createHabitsLayout();
 
-        let habitInput = `<input type="text" class="habit__text" id='${newId}' data-year='${date.year}' data-month='${date.month}'>`;
+        let habitInput = `<input type="text" class="habit__text" id='${newId}' data-year='${dateObj.date.year}' data-month='${dateObj.date.month}'>`;
         habitsLayout.name.innerHTML += habitInput;
 
-        for (let i = 1; i <= date.daysInMonth; i++) {
+        for (let i = 1; i <= dateObj.date.daysInMonth; i++) {
             let habitCheckBox = {
                 isChecked: false,
                 id: i,
@@ -275,11 +262,11 @@ function addNewHabit() {
             habitsLayout.checkboxes.innerHTML += `<input type="checkbox" data-parent-row-id='${newId}' class="checkbox" id='${i}'${habitCheckBox.isChecked ? 'checked' : ''}/>`;
 
             habitRow.checkBoxesRow.push(habitCheckBox);
-            setCheckboxValue(date);
+            setCheckboxValue(dateObj.date);
         }
 
     }
-    saveInputValue(date);
+    saveInputValue(dateObj.date);
 
     localStorage.setItem('habitData', JSON.stringify(habitData));
     addEventDelete();

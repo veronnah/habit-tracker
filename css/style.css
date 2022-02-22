@@ -6,15 +6,11 @@
     src: url('../fonts/tillana-v6-latin-regular.eot');
     /* IE9 Compat Modes */
     src: local(''),
-        url('../fonts/tillana-v6-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('../fonts/tillana-v6-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */
-        url('../fonts/tillana-v6-latin-regular.woff') format('woff'),
-        /* Modern Browsers */
-        url('../fonts/tillana-v6-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('../fonts/tillana-v6-latin-regular.svg#Tillana') format('svg');
+    url('../fonts/tillana-v6-latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-regular.woff') format('woff'),
+        /* Modern Browsers */ url('../fonts/tillana-v6-latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-regular.svg#Tillana') format('svg');
     /* Legacy iOS */
 }
 
@@ -26,15 +22,11 @@
     src: url('../fonts/tillana-v6-latin-500.eot');
     /* IE9 Compat Modes */
     src: local(''),
-        url('../fonts/tillana-v6-latin-500.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('../fonts/tillana-v6-latin-500.woff2') format('woff2'),
-        /* Super Modern Browsers */
-        url('../fonts/tillana-v6-latin-500.woff') format('woff'),
-        /* Modern Browsers */
-        url('../fonts/tillana-v6-latin-500.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('../fonts/tillana-v6-latin-500.svg#Tillana') format('svg');
+    url('../fonts/tillana-v6-latin-500.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-500.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-500.woff') format('woff'),
+        /* Modern Browsers */ url('../fonts/tillana-v6-latin-500.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-500.svg#Tillana') format('svg');
     /* Legacy iOS */
 }
 
@@ -46,15 +38,11 @@
     src: url('../fonts/tillana-v6-latin-600.eot');
     /* IE9 Compat Modes */
     src: local(''),
-        url('../fonts/tillana-v6-latin-600.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('../fonts/tillana-v6-latin-600.woff2') format('woff2'),
-        /* Super Modern Browsers */
-        url('../fonts/tillana-v6-latin-600.woff') format('woff'),
-        /* Modern Browsers */
-        url('../fonts/tillana-v6-latin-600.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('../fonts/tillana-v6-latin-600.svg#Tillana') format('svg');
+    url('../fonts/tillana-v6-latin-600.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-600.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-600.woff') format('woff'),
+        /* Modern Browsers */ url('../fonts/tillana-v6-latin-600.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-600.svg#Tillana') format('svg');
     /* Legacy iOS */
 }
 
@@ -66,15 +54,11 @@
     src: url('../fonts/tillana-v6-latin-700.eot');
     /* IE9 Compat Modes */
     src: local(''),
-        url('../fonts/tillana-v6-latin-700.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('../fonts/tillana-v6-latin-700.woff2') format('woff2'),
-        /* Super Modern Browsers */
-        url('../fonts/tillana-v6-latin-700.woff') format('woff'),
-        /* Modern Browsers */
-        url('../fonts/tillana-v6-latin-700.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('../fonts/tillana-v6-latin-700.svg#Tillana') format('svg');
+    url('../fonts/tillana-v6-latin-700.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-700.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-700.woff') format('woff'),
+        /* Modern Browsers */ url('../fonts/tillana-v6-latin-700.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-700.svg#Tillana') format('svg');
     /* Legacy iOS */
 }
 
@@ -86,15 +70,11 @@
     src: url('../fonts/tillana-v6-latin-800.eot');
     /* IE9 Compat Modes */
     src: local(''),
-        url('../fonts/tillana-v6-latin-800.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('../fonts/tillana-v6-latin-800.woff2') format('woff2'),
-        /* Super Modern Browsers */
-        url('../fonts/tillana-v6-latin-800.woff') format('woff'),
-        /* Modern Browsers */
-        url('../fonts/tillana-v6-latin-800.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('../fonts/tillana-v6-latin-800.svg#Tillana') format('svg');
+    url('../fonts/tillana-v6-latin-800.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-800.woff2') format('woff2'),
+        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-800.woff') format('woff'),
+        /* Modern Browsers */ url('../fonts/tillana-v6-latin-800.ttf') format('truetype'),
+        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-800.svg#Tillana') format('svg');
     /* Legacy iOS */
 }
 
@@ -107,9 +87,13 @@
     user-select: none;
 }
 
+body {
+    background-color: #dadde5;
+}
+
 .container {
     background-image: linear-gradient(#dedce4, #C3E3ED);
-    font-family: 'Tillana';
+    font-family: 'Tillana', serif;
     position: relative;
 }
 
@@ -139,7 +123,8 @@
 
 .calendar__area {
     margin: 0 auto;
-    height: calc(100% - 50px);
+    padding-botton: 80px;
+    cursor: cell;
     background-color: rgba(17, 32, 63, 0.37);
     display: flex;
     flex-direction: column;
