@@ -123,7 +123,8 @@ body {
 
 .calendar__area {
     margin: 0 auto;
-    padding-botton: 80px;
+    padding-bottom: 80px;
+    height: 100%;
     cursor: cell;
     background-color: rgba(17, 32, 63, 0.37);
     display: flex;
