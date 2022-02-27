@@ -15,25 +15,28 @@
   <div class="container">
     <div class="calendar__area">
       <div class="main__heading">
-        <button id="prevBtn">Back</button>
+        <button id="prevBtn"><img src="./img/arrow-left.svg" alt="previous month" title="Previous month"></button>
         <h1 class="heading">My habit tracker</h1>
-        <button id="nextBtn">Next</button>
+        <button id="nextBtn"><img src="./img/arrow-right.svg" alt="next month" title="Next month"></button>
       </div>
       <div class="cal__header">
         <div class="month__name-container">
           <div class="month__name monthDisplay"></div>
         </div>
       </div>
-      <div id="weekdays" class="weekdays">
-      </div>
-      <div class="habits">
-        <div class="habit">
-          <div class="habit__name">
-          </div>
-          <div class="habit__checkboxes"></div>
+      <div class="habits__table-container">
+        <div id="weekdays" class="weekdays">
         </div>
+        <div class="habits">
+          <div class="habit">
+            <div class="habit__name">
+            </div>
+            <div class="habit__checkboxes"></div>
+          </div>
+        </div>
+        <button class="add__habit-btn" onclick="addNewHabit()">+</button>
       </div>
-      <button class="add__habit-btn" onclick="addNewHabit()">+</button>
+  
     </div>
   </div>
   </div>

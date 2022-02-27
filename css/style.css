@@ -29,8 +29,10 @@ input[type="checkbox"] {
     justify-content: center;
     background-color: transparent;
     cursor: pointer;
-    height: 34px;
-    width: 34px;
+    /* height: 34px;
+    width: 34px; */
+    height: 40px;
+    width: 44px;
     border-left: 2px solid #B1B1B1;
 }
 
@@ -55,6 +57,29 @@ input[type="checkbox"]:checked::after {
     display: block;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d3d2d2;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #B1B1B1;
+}
+
+button {
+    border: none;
+    outline: none;
+    background: none;
+}
+
 .container {
     position: relative;
 }
@@ -67,7 +92,7 @@ input[type="checkbox"]:checked::after {
 .heading {
     color: #56515F;
     font-size: 30px;
-    margin: 10px;
+    margin: 0 34px;
 }
 
 .heading-pic1 img,
@@ -85,12 +110,11 @@ input[type="checkbox"]:checked::after {
 .calendar__area {
     margin: 0 auto;
     padding: 54px;
-    padding-bottom: 80px;
     height: 100%;
-    cursor: cell;
     background-color: #FCFCFC;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .cal__header {
@@ -100,15 +124,27 @@ input[type="checkbox"]:checked::after {
 }
 
 .weekdays {
-    margin: 10px 0 10px;
     padding-left: 372px;
     display: flex;
     text-align: center;
 }
 
 .weekdays .weekday {
-    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    /* font-size: 13px;
     width: 34px;
+    height: 34px; */
+    height: 40px;
+    width: 44px;
+    border-left: 2px solid #B1B1B1;
+    border-top: 2px solid #B1B1B1;
+}
+
+.weekdays .weekday:last-child {
+    border-right: 2px solid #B1B1B1;
 }
 
 .month__name-container {
@@ -159,6 +195,7 @@ input[type="checkbox"]:checked::after {
     display: flex;
     align-items: center;
     border-top: 2px solid #B1B1B1;
+    height: 40px;
 }
 
 .habit:last-child {
@@ -167,14 +204,10 @@ input[type="checkbox"]:checked::after {
 
 .habit__checkboxes {
     display: flex;
-    /* display: grid;
-    grid-template-columns: repeat(31, 1fr); */
-    width: 100%;
 }
 
 .habit__name {
-    max-width: 372px;
-    width: 100%;
+    width: 372px;
 }
 
 .habit__name input {
@@ -183,10 +216,11 @@ input[type="checkbox"]:checked::after {
 
 input.habit__text {
     cursor: pointer;
-    height: 34px;
+    /* height: 34px; */
     font-size: 20px;
     border: none;
     outline: none;
+    padding: 0 20px;
 }
 
 .add__habit-btn {
@@ -209,4 +243,29 @@ input.habit__text {
     width: 30px;
     margin-right: 6px;
     height: 100%;
+}
+
+@media (max-width: 1536px) {
+    input[type="checkbox"] {
+        height: 34px;
+        width: 34px;
+    }
+
+    .habit {
+        height: 34px;
+    }
+
+    .weekdays .weekday {
+        font-size: 13px;
+        width: 34px;
+        height: 34px;
+    }
+
+}
+
+@media (max-width: 1430px) {
+    .habits__table-container {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }
