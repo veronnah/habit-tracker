@@ -1,82 +1,4 @@
-/* tillana-regular - latin */
-@font-face {
-    font-family: 'Tillana';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/tillana-v6-latin-regular.eot');
-    /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/tillana-v6-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-regular.woff') format('woff'),
-        /* Modern Browsers */ url('../fonts/tillana-v6-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-regular.svg#Tillana') format('svg');
-    /* Legacy iOS */
-}
-
-/* tillana-500 - latin */
-@font-face {
-    font-family: 'Tillana';
-    font-style: normal;
-    font-weight: 500;
-    src: url('../fonts/tillana-v6-latin-500.eot');
-    /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/tillana-v6-latin-500.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-500.woff2') format('woff2'),
-        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-500.woff') format('woff'),
-        /* Modern Browsers */ url('../fonts/tillana-v6-latin-500.ttf') format('truetype'),
-        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-500.svg#Tillana') format('svg');
-    /* Legacy iOS */
-}
-
-/* tillana-600 - latin */
-@font-face {
-    font-family: 'Tillana';
-    font-style: normal;
-    font-weight: 600;
-    src: url('../fonts/tillana-v6-latin-600.eot');
-    /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/tillana-v6-latin-600.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-600.woff2') format('woff2'),
-        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-600.woff') format('woff'),
-        /* Modern Browsers */ url('../fonts/tillana-v6-latin-600.ttf') format('truetype'),
-        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-600.svg#Tillana') format('svg');
-    /* Legacy iOS */
-}
-
-/* tillana-700 - latin */
-@font-face {
-    font-family: 'Tillana';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/tillana-v6-latin-700.eot');
-    /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/tillana-v6-latin-700.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-700.woff2') format('woff2'),
-        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-700.woff') format('woff'),
-        /* Modern Browsers */ url('../fonts/tillana-v6-latin-700.ttf') format('truetype'),
-        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-700.svg#Tillana') format('svg');
-    /* Legacy iOS */
-}
-
-/* tillana-800 - latin */
-@font-face {
-    font-family: 'Tillana';
-    font-style: normal;
-    font-weight: 800;
-    src: url('../fonts/tillana-v6-latin-800.eot');
-    /* IE9 Compat Modes */
-    src: local(''),
-    url('../fonts/tillana-v6-latin-800.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */ url('../fonts/tillana-v6-latin-800.woff2') format('woff2'),
-        /* Super Modern Browsers */ url('../fonts/tillana-v6-latin-800.woff') format('woff'),
-        /* Modern Browsers */ url('../fonts/tillana-v6-latin-800.ttf') format('truetype'),
-        /* Safari, Android, iOS */ url('../fonts/tillana-v6-latin-800.svg#Tillana') format('svg');
-    /* Legacy iOS */
-}
+@import url('./fonts.css');
 
 * {
     box-sizing: border-box;
@@ -87,13 +9,53 @@
     user-select: none;
 }
 
+html,
 body {
-    background-color: #dadde5;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Preahvihear';
+    font-style: normal;
+    color: #8C7B7B;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    cursor: pointer;
+    height: 34px;
+    width: 34px;
+    border-left: 2px solid #B1B1B1;
+}
+
+input[type="checkbox"]:last-child {
+    border-right: 2px solid #B1B1B1;
+}
+
+input[type="checkbox"]::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f00c';
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    display: none;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgba(73, 201, 116, 0.5);
+}
+
+input[type="checkbox"]:checked::after {
+    display: block;
 }
 
 .container {
-    background-image: linear-gradient(#dedce4, #C3E3ED);
-    font-family: 'Tillana', serif;
     position: relative;
 }
 
@@ -104,7 +66,6 @@ body {
 
 .heading {
     color: #56515F;
-    font-weight: 600;
     font-size: 30px;
     margin: 10px;
 }
@@ -123,32 +84,45 @@ body {
 
 .calendar__area {
     margin: 0 auto;
+    padding: 54px;
     padding-bottom: 80px;
     height: 100%;
     cursor: cell;
-    background-color: rgba(17, 32, 63, 0.37);
+    background-color: #FCFCFC;
     display: flex;
     flex-direction: column;
 }
 
 .cal__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin: 26px 0 50px;
 }
 
 .weekdays {
     margin: 10px 0 10px;
-    padding-left: 22.5em;
-    display: grid;
-    grid-template-columns: repeat(31, 1fr);
+    padding-left: 372px;
+    display: flex;
     text-align: center;
 }
 
-.monthDisplay {
-    background-color: #e8dfd4;
+.weekdays .weekday {
+    font-size: 15px;
+    width: 34px;
+}
+
+.month__name-container {
+    max-width: 360px;
+    width: 100%;
+    padding: 5px 20px;
+    margin-right: 6em;
+    border-bottom: 2px solid #B1B1B1;
+}
+
+.month__name {
+    font-size: 24px;
     text-align: center;
     padding: 4px;
-    margin-left: 5em;
 }
 
 .check-container {
@@ -184,23 +158,22 @@ body {
 .habit {
     display: flex;
     align-items: center;
+    border-top: 2px solid #B1B1B1;
+}
+
+.habit:last-child {
+    border-bottom: 2px solid #B1B1B1;
 }
 
 .habit__checkboxes {
-    display: grid;
-    grid-template-columns: repeat(31, 1fr);
+    display: flex;
+    /* display: grid;
+    grid-template-columns: repeat(31, 1fr); */
     width: 100%;
-}
-
-.habit__checkboxes input {
-    cursor: pointer;
-    max-width: 50px;
-    width: 100%;
-    height: 20px;
 }
 
 .habit__name {
-    max-width: 323px;
+    max-width: 372px;
     width: 100%;
 }
 
@@ -210,6 +183,10 @@ body {
 
 input.habit__text {
     cursor: pointer;
+    height: 34px;
+    font-size: 20px;
+    border: none;
+    outline: none;
 }
 
 .add__habit-btn {

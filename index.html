@@ -8,19 +8,20 @@
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
   <div class="container">
     <div class="calendar__area">
       <div class="main__heading">
-        <h1 class="heading">Habit tracker</h1>
+        <button id="prevBtn">Back</button>
+        <h1 class="heading">My habit tracker</h1>
+        <button id="nextBtn">Next</button>
       </div>
       <div class="cal__header">
-        <div class="monthDisplay"></div>
-        <div class="cal__btns">
-          <button id="prevBtn">Back</button>
-          <button id="nextBtn">Next</button>
+        <div class="month__name-container">
+          <div class="month__name monthDisplay"></div>
         </div>
       </div>
       <div id="weekdays" class="weekdays">

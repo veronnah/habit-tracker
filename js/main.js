@@ -107,7 +107,7 @@ function createHabitsLayout() {
     habitCheckboxes.className = 'habit__checkboxes';
     let habitDeleteBtn = document.createElement('div');
     habitDeleteBtn.className = 'habit__delete';
-    habitDeleteBtn.innerHTML = `<button>-</button>`;
+    // habitDeleteBtn.innerHTML = `<button>-</button>`;
     habit.appendChild(habitDeleteBtn);
     habit.appendChild(habitName);
     habit.appendChild(habitCheckboxes);
@@ -138,7 +138,7 @@ function pushDay() {
     const container = document.getElementById('weekdays');
     weekDaysRow.forEach((element) => {
         element.forEach(obj => {
-            container.innerHTML += `<div>${obj.dayName}</div>`;
+            container.innerHTML += `<div class="weekday">${obj.dayName}</div>`;
         });
     });
 }
