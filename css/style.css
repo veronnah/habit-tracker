@@ -1,12 +1,17 @@
 @import url('./fonts.css');
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 html,
@@ -195,8 +200,37 @@ button {
 .habit {
     display: flex;
     align-items: center;
+    position: relative;
     border-top: 2px solid #B1B1B1;
     height: 40px;
+}
+
+.habit:hover .habit__actions {
+    display: flex;
+}
+
+.habit__actions {
+    display: none;
+    width: 50px;
+    height: 100%;
+    align-items: center;
+    position: absolute;
+    left: -38px;
+}
+
+.add__new-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s all;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.add__new-btn:hover {
+    background-color: #F2F2F2;
+    border-radius: 3px;
 }
 
 .habit:last-child {
@@ -213,6 +247,7 @@ button {
 
 .habit__name input {
     width: 100%;
+    background-color: transparent;
 }
 
 input.habit__text {
@@ -237,12 +272,19 @@ input.habit__text {
     box-shadow: 1px 3px 6px #0000003d;
 }
 
+.habit__delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E5A8A8;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+}
+
 .habit__delete button {
-    background-color: lightcoral;
     outline: none;
     border: none;
-    width: 30px;
-    margin-right: 6px;
     height: 100%;
 }
 
