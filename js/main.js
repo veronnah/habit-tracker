@@ -107,7 +107,7 @@ function createHabitsLayout() {
     habitCheckboxes.className = 'habit__checkboxes';
     let habitDeleteBtn = document.createElement('div');
     habitDeleteBtn.className = 'habit__delete';
-    habitDeleteBtn.innerHTML = `<button><img src="./img/minus.svg" alt="Options"></button>`;
+    habitDeleteBtn.innerHTML = `<img src="./img/minus.svg" alt="Options">`;
     let addNewBtn = document.createElement('div');
     addNewBtn.innerHTML =
         `<button onclick="addNewHabit()"><img src="./img/plus.svg" alt="Add new habit"></button>`;

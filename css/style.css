@@ -205,30 +205,24 @@ button {
     height: 40px;
 }
 
-.habit:hover .habit__actions {
-    display: flex;
-}
-
-.habit__actions {
-    display: none;
-    width: 50px;
-    height: 100%;
-    align-items: center;
-    position: absolute;
-    left: -38px;
-}
-
 .add__new-btn {
+    opacity: 0;
     display: flex;
-    justify-content: center;
+    position: absolute;
+    left: -50px;
     align-items: center;
     transition: .3s all;
-    width: 20px;
-    height: 20px;
+    width: 100px;
     margin-right: 5px;
 }
 
-.add__new-btn:hover {
+.add__new-btn button {
+    width: 20px;
+    height: 20px;
+    transition: .3s all;
+}
+
+.add__new-btn button:hover {
     background-color: #F2F2F2;
     border-radius: 3px;
 }
@@ -259,36 +253,31 @@ input.habit__text {
     padding: 0 20px;
 }
 
-.add__habit-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    font-weight: 900;
-    border: none;
-    background-color: rgb(152, 223, 164);
-    margin-top: 20px;
-    margin-left: 20px;
-    border-radius: 50%;
-    box-shadow: 1px 3px 6px #0000003d;
+.habit__delete {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    width: 42px;
+    height: 100%;
+    position: absolute;
+    left: -25px;
+    transition: .3s all;
 }
 
-.habit__delete {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E5A8A8;
+.habit__delete img {
+    cursor: pointer;
     width: 20px;
     height: 20px;
     border-radius: 3px;
-}
-
-.habit__delete button {
     outline: none;
     border: none;
-    height: 100%;
+    transition: .3s all;
 }
 
-@media (max-width: 1720px) {}
+.habit:hover .habit__delete,
+.habit:hover .add__new-btn {
+    opacity: 1;
+}
 
 @media (max-width: 1536px) {
     input[type="checkbox"] {
