@@ -9,6 +9,7 @@ const habitCheckboxes = document.querySelector('.habit__checkboxes');
 let habitName = document.querySelector('.habit__name');
 let habits = document.querySelector('.habits');
 let habit = document.querySelectorAll('.habit');
+let addNew = document.querySelector('.add-new__block');
 
 let weekDaysRow = [];
 let habitData = [];
@@ -28,6 +29,8 @@ function load() {
     habitName.innerHTML = '';
     habits.innerHTML = '';
     habit.innerHTML = '';
+    weekdays.dataset.year = currentDate.year;
+    weekdays.dataset.month = ++currentDate.month;
 
     weekDaysRow.push(createWeekdays(paddingDays, currentDate.date));
     pushDay();
@@ -37,6 +40,14 @@ function load() {
     if (habitData != null && habitData.find(data => data.month === currentDate.date.month && data.year === currentDate.date.year)) {
         let currentMonth = habitData.find(data => data.month === currentDate.date.month && data.year === currentDate.date.year);
         if (currentMonth) {
+            if (currentMonth.habitRows.length > 0) {
+                weekdays.classList.remove('hidden');
+                addNew.classList.remove('visible');
+            } else {
+                weekdays.classList.add('hidden');
+                addNew.classList.add('visible');
+            }
+
             currentMonth.habitRows.forEach(el => {
                 let habitsLayout = createHabitsLayout();
 
@@ -142,6 +153,7 @@ function createWeekdays(paddingDays, date) {
 
 function pushDay() {
     const container = document.getElementById('weekdays');
+
     weekDaysRow.forEach((element) => {
         element.forEach(obj => {
             container.innerHTML += `<div class="weekday">${obj.dayName}</div>`;
@@ -241,9 +253,15 @@ function addNewHabit() {
 
     if (habitData != null && habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year)) {
         let currentMonth = habitData.find(data => data.month === dateObj.date.month && data.year === dateObj.date.year);
+
         let habitRowsFiltered = currentMonth.habitRows.filter(el => {
             return el !== null && el !== '';
         });
+
+        if(++habitRowsFiltered.length > 0){
+            addNew.classList.remove('visible');
+            weekdays.classList.remove('hidden');
+        }
 
         let newId = ++habitRowsFiltered.length;
 
@@ -281,21 +299,32 @@ function addNewHabit() {
 
 function deleteHabitRow(event) {
     let clickedElement = event.target.parentNode.parentNode;
-    let currentRowInput = event.target.parentNode.nextElementSibling.firstChild;
-    let currentYear = +currentRowInput.dataset.year;
-    let currentMonth = +currentRowInput.dataset.month;
-    let currentId = +currentRowInput.id;
-    let filteredHabitData = habitData.find(e => e.year === currentYear && e.month === currentMonth).habitRows.filter(e => e.id !== currentId);
+    let currentRowInput = event.target.parentNode.nextElementSibling?.firstChild;
+    let currentYear = +currentRowInput?.dataset.year;
+    let currentMonth = +currentRowInput?.dataset.month;
+    let currentId = +currentRowInput?.id;
+    let filteredHabitData;
 
-    habitData.map(rows => {
-        if (rows.year === currentYear && rows.month === currentMonth) {
-            rows.habitRows = filteredHabitData;
+    if (currentRowInput) {
+        filteredHabitData = habitData.find(e => e.year === currentYear && e.month === currentMonth).habitRows.filter(e => e.id !== currentId);
+    }
+
+    if (filteredHabitData) {
+        habitData.map(rows => {
+            if (rows.year === currentYear && rows.month === currentMonth) {
+                rows.habitRows = filteredHabitData;
+            }
+        });
+
+        if (filteredHabitData.length === 0) {
+            weekdays.classList.add('hidden');
+            addNew.classList.add('visible');
         }
-    });
 
-    clickedElement.remove();
-    localStorage.removeItem('habitData');
-    localStorage.setItem('habitData', JSON.stringify(habitData));
+        clickedElement.remove();
+        localStorage.removeItem('habitData');
+        localStorage.setItem('habitData', JSON.stringify(habitData));
+    }
 }
 
 function addEventDelete() {
