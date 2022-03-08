@@ -314,7 +314,7 @@ input.habit__text {
     opacity: 1;
 }
 
-@media (max-width: 1536px) {
+@media (max-width: 1853px) {
     input[type="checkbox"] {
         height: 34px;
         width: 34px;
@@ -331,15 +331,25 @@ input.habit__text {
     }
 }
 
-@media (max-width: 1430px) {
+@media (max-width: 1534px) {
 
     .habits,
     .weekdays {
-        width: 1340px;
+        width: 1426px;
     }
 
     .habits__table-container {
         overflow-x: auto;
         white-space: nowrap;
+    }
+}
+
+@media (max-width: 1140px) {
+    .cal__header {
+        justify-content: center;
+    }
+
+    .month__name-container {
+        margin-right: 0;
     }
 }
