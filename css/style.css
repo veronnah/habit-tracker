@@ -34,10 +34,9 @@ input[type="checkbox"] {
     justify-content: center;
     background-color: transparent;
     cursor: pointer;
-    /* height: 34px;
-    width: 34px; */
     height: 40px;
     width: 44px;
+    transition: .3s all;
     border-left: 2px solid #B1B1B1;
 }
 
@@ -47,15 +46,22 @@ input[type="checkbox"]:last-child {
 
 input[type="checkbox"]::after {
     font-family: "Font Awesome 5 Free";
-    content: '\f00c';
+    content: '';
+    background-color: rgba(73, 201, 116, 0.5);
+    -webkit-mask-image: url('../img/checked-draw.svg');
+    mask-image: url('../img/checked-draw.svg');
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
     font-size: 20px;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     font-weight: 800;
     color: #fff;
     display: none;
-}
-
-input[type="checkbox"]:checked {
-    background-color: rgba(73, 201, 116, 0.5);
 }
 
 input[type="checkbox"]:checked::after {
@@ -286,6 +292,7 @@ input.habit__text {
     border: none;
     outline: none;
     padding: 0 20px;
+    color: #8C7B7B;
 }
 
 .habit__delete {
@@ -351,5 +358,19 @@ input.habit__text {
 
     .month__name-container {
         margin-right: 0;
+    }
+
+    .add__new-btn {
+        opacity: 1;
+        left: 6px;
+    }
+
+    .habit__delete {
+        opacity: 1;
+        left: 30px;
+    }
+
+    input.habit__text {
+        padding: 0 60px;
     }
 }
